@@ -6,7 +6,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: docker build . -t docker-hub-rate-limit:latest
       - name: Preview rate limit
-      - run: |
+        run: |
           TOKEN=$(curl "https://auth.docker.io/token?service=registry.docker.io&scope=repository:ratelimitpreview/test:pull" | jq -r .token)
           echo "::add-mask::${TOKEN}"
           curl -v -H "Authorization: Bearer ${TOKEN}" https://registry-1.docker.io/v2/ratelimitpreview/test/manifests/latest'
